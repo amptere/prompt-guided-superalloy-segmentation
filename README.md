@@ -10,8 +10,7 @@ The example task focuses on $\gamma/\gamma'$ microstructures after thermal expos
 .
 |-- README.md
 |-- data
-|   |-- manifest.csv
-|   `-- examples
+|   |-- examples
 |       |-- 1070-10H
 |       |-- 1070-150H
 |       |-- 1070-300H
