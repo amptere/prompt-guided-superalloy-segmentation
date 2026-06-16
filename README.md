@@ -61,11 +61,6 @@ The structured prompt describes:
 
 
 
-## Example Data
-
-The example micrographs are SEM images of a Ni-based single-crystal superalloy thermally exposed at $1070\,^{\circ}\mathrm{C}$. They represent different $\gamma'$ morphologies, including relatively regular precipitates, coarsened structures, locally connected regions, and rafted microstructures after longer exposure.
-
-All images are provided at `1024 x 768` pixels.
 
 ## Notes
 
