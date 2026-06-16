@@ -32,7 +32,7 @@ The ComfyUI workflow is provided at:
 workflows/prompt-guided-superalloy-segmentation.comfyui.json
 ````
 <p align="center">
-  <img src="assets/workflow.png" width="750">
+  <img src="workflows/workflow.png" width="750">
 </p>
 The workflow was configured with the following model files:
 
