@@ -50,17 +50,6 @@ Model weights are not included in this repository. Please download the correspon
 
 
 
-## Prompt Design
-
-The structured prompt describes:
-
-- target microstructural morphology, such as strip-like, band-like, blocky, or connected regions;
-- spatial relationships between $\gamma'$ precipitates and the $\gamma$ matrix;
-- fixed color rules for each microstructural class;
-- output constraints, including solid-color filling, no transparency, no gradients, and preservation of the original morphology and phase boundaries.
-
-
-
 
 ## Notes
 
