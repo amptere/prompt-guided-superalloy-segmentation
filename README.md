@@ -18,6 +18,7 @@ The example task focuses on $\gamma/\gamma'$ microstructures after thermal expos
 |
 `-- workflows
     `-- prompt-guided-superalloy-segmentation.comfyui.json
+    `-- workflow.png
 ```
 
 
@@ -30,7 +31,9 @@ The ComfyUI workflow is provided at:
 ```text
 workflows/prompt-guided-superalloy-segmentation.comfyui.json
 ````
-
+<p align="center">
+  <img src="assets/workflow.png" width="750">
+</p>
 The workflow was configured with the following model files:
 
 | Component | File name used in the workflow | Hugging Face source | ModelScope source |
