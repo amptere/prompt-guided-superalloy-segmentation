@@ -16,9 +16,7 @@ The example task focuses on $\gamma/\gamma'$ microstructures after thermal expos
 |       |-- 1070-150H
 |       |-- 1070-300H
 |       `-- 1070-500H
-|-- docs
-|   |-- model_requirements.txt
-|   `-- workflow_summary.json
+|
 `-- workflows
     `-- prompt-guided-superalloy-segmentation.comfyui.json
 ```
@@ -35,7 +33,7 @@ otsu_mask.*                 Otsu-thresholding baseline result
 annotation.json             Original annotation file
 ```
 
-`data/manifest.csv` records the standardized file name and the original source file for each sample.
+
 
 ## Model and Workflow
 
@@ -43,34 +41,22 @@ The ComfyUI workflow is provided at:
 
 ```text
 workflows/prompt-guided-superalloy-segmentation.comfyui.json
-```
+````
 
 The workflow was configured with the following model files:
 
-```text
-qwen_image_edit_2511_fp8mixed.safetensors
-Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors
-qwen_2.5_vl_7b_fp8_scaled.safetensors
-qwen_image_vae.safetensors
-```
+| Component                             | File name used in the workflow                                | Source                                                                                                                                                                          |
+| ------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Diffusion model / UNet                | `qwen_image_edit_2511_fp8mixed.safetensors`                   | [Comfy-Org/Qwen-Image-Edit_ComfyUI](https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/blob/main/split_files/diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors)  |
+| Lightning LoRA / acceleration adapter | `Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors` | [lightx2v/Qwen-Image-Edit-2511-Lightning](https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning/blob/main/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors) |
+| Text encoder / CLIP                   | `qwen_2.5_vl_7b_fp8_scaled.safetensors`                       | [Comfy-Org/Qwen-Image_ComfyUI](https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/blob/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors)                   |
+| VAE                                   | `qwen_image_vae.safetensors`                                  | [Comfy-Org/Qwen-Image_ComfyUI](https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/blob/main/split_files/vae/qwen_image_vae.safetensors)                                        |
 
-Model weights are not included in this repository. Place the corresponding files in the model directories expected by your ComfyUI installation for `UNETLoader`, `CLIPLoader`, `VAELoader`, and `LoraLoaderModelOnly`.
+Model weights are not included in this repository. Please download the corresponding files from the links above and place them in the model directories expected by your ComfyUI installation for `diffusion_models`, `text_encoders`, `vae`, and `loras`.
 
-The workflow uses the following custom node packages in addition to ComfyUI core nodes:
 
-```text
-masquerade-nodes-comfyui
-comfyui-logicutils
-comfyui_layerstyle
-was-ns
-comfyui-kjnodes
-```
 
-A machine-readable workflow summary is available in:
 
-```text
-docs/workflow_summary.json
-```
 
 ## Prompt Design
 
@@ -81,42 +67,13 @@ The structured prompt describes:
 - fixed color rules for each microstructural class;
 - output constraints, including solid-color filling, no transparency, no gradients, and preservation of the original morphology and phase boundaries.
 
-The central idea is to reformulate segmentation as image-to-label generation: the multimodal image editing model is asked to convert an SEM micrograph into a color-coded pseudo-label image, from which binary or multiclass masks can be extracted.
 
-## Usage
-
-1. Install ComfyUI and the required custom node packages.
-2. Place the required Qwen Image Edit, CLIP, VAE, and LoRA model files in the appropriate ComfyUI model folders.
-3. Open ComfyUI and import:
-
-   ```text
-   workflows/prompt-guided-superalloy-segmentation.comfyui.json
-   ```
-
-4. Load one of the example SEM images, for example:
-
-   ```text
-   data/examples/1070-300H/original_sem.jpg
-   ```
-
-5. Run the workflow to generate a color-coded label image.
-6. Extract the target-phase mask using the predefined color thresholding rule. The included `generated_mask.*` files provide example outputs.
 
 ## Example Data
 
 The example micrographs are SEM images of a Ni-based single-crystal superalloy thermally exposed at $1070\,^{\circ}\mathrm{C}$. They represent different $\gamma'$ morphologies, including relatively regular precipitates, coarsened structures, locally connected regions, and rafted microstructures after longer exposure.
 
 All images are provided at `1024 x 768` pixels.
-
-## Baselines
-
-The repository includes baseline segmentation outputs for comparison:
-
-- `otsu_mask.*`: Otsu thresholding result.
-- `pixel_classifier_mask.*`: pixel-classifier result.
-- `manual_annotation.*`: manual annotation used as the reference.
-
-These files can be used to compare region overlap metrics such as IoU, Dice coefficient, precision, and recall, as well as downstream microstructural parameters such as $\gamma'$ area fraction, equivalent diameter, and $\gamma$ matrix channel width.
 
 ## Notes
 
