@@ -51,9 +51,4 @@ Model weights are not included in this repository. Please download the correspon
 
 
 
-## Notes
 
-- This repository is intended as a compact demonstration package rather than a full training dataset.
-- No model weights are included.
-- Before public release, add a license file that matches the intended data and code sharing policy.
-- If these data are used in a publication, cite the associated paper or manuscript once available.
