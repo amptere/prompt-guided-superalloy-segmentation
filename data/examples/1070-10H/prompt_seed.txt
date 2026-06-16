@@ -1,0 +1,33 @@
+prompt（positive）:
+
+[Task]
+Color-coded segmentation
+
+[Classes]
+- γ′ precipitates: pure purple, RGB = (128, 0, 128)
+- γ matrix channels: pure white, RGB = (255, 255, 255)
+
+[Structure]
+The darker square, near-square, rectangular, and locally elongated block-like regions in the image correspond to γ′ precipitates.
+The brighter continuous network-like regions correspond to γ matrix channels, which are located between and separate the γ′ precipitates.
+
+[Constraints]
+Preserve the original morphology, size, boundaries, and spatial distribution;
+Do not merge adjacent γ′ precipitates that are separated by white γ matrix channels;
+Ignore grayscale fluctuations, texture noise, and slight brightness variations inside the γ′ precipitates;
+
+Do not use any other colors;
+Do not use gray, black, semi-transparent colors, or approximate colors;
+Do not add shadows, gradients, outlines, text, labels, scale bars, or any extra markings;
+Do not change the original field of view, aspect ratio, or microstructural geometry;
+The final output must be a clean two-color semantic segmentation map.
+
+
+
+seed:558321504795041
+
+ksample:
+- CFG scale: 1.0
+- Sampler: Euler
+- Scheduler: Simple
+- Denoise strength: 1.00
