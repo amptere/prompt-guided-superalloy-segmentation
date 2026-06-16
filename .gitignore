@@ -1,0 +1,22 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+
+# Python/cache files
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# ComfyUI runtime outputs and large local model weights
+outputs/
+temp/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+
+# Logs
+*.log
